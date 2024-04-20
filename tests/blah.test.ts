@@ -1,4 +1,4 @@
-import sum from '../src/module1';
+import { sum } from '../src/module1';
 
 describe('blah', () => {
   it('works', () => {
