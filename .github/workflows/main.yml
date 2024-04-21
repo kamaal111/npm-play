@@ -6,13 +6,11 @@ concurrency:
 jobs:
   build:
     name: Build, lint, and test on Node ${{ matrix.node }} and ${{ matrix.os }}
-
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         node: ['21.x']
         os: [ubuntu-latest, macOS-latest]
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
