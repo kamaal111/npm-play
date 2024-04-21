@@ -17,12 +17,25 @@ function modifyPackageJSON(packageJSON) {
     argumentVersion && argumentVersion !== 'null'
       ? argumentVersion
       : packageJSON.version;
-  return {
-    ...packageJSON,
-    main: 'index.js',
-    typings: 'index.d.ts',
-    version,
-  };
+  return omit(
+    {
+      ...packageJSON,
+      main: 'index.js',
+      typings: 'index.d.ts',
+      version,
+    },
+    ['files']
+  );
+}
+
+function omit(object, fieldsToOmit) {
+  return Object.entries(object).reduce((acc, [key, value]) => {
+    if (!fieldsToOmit.includes(key)) {
+      acc[key] = value;
+    }
+
+    return acc;
+  }, {});
 }
 
 async function readJSON(path) {
