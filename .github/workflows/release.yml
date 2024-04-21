@@ -19,12 +19,8 @@ jobs:
       - name: Install deps and build (with cache)
         uses: bahmutov/npm-install@v1
 
-      - name: Setup environment for publishing
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: sh scripts/setup-for-publishing.sh
-
       - name: Publish ${{ github.ref_name }}
         env:
           VERSION: ${{ github.ref_name }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm run deploy
