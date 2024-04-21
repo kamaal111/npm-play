@@ -1,0 +1,22 @@
+name: Release
+on:
+  push:
+    tags:
+      - '*'
+env:
+  NODE_VERSION: 21.x
+jobs:
+  build:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Use Node $NODE_VERSION
+        uses: actions/setup-node@v4
+        with:
+          node-version: $NODE_VERSION
+
+      - name: Install deps and build (with cache)
+        uses: bahmutov/npm-install@v1
