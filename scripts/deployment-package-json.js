@@ -12,11 +12,17 @@ async function main() {
 }
 
 function modifyPackageJSON(packageJSON) {
+  const argumentVersion = process.argv[2];
+  const version =
+    argumentVersion && argumentVersion !== 'null'
+      ? argumentVersion
+      : packageJSON.version;
   return omit(
     {
       ...packageJSON,
       main: 'index.js',
       typings: 'index.d.ts',
+      version,
     },
     ['files']
   );

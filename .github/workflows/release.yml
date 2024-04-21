@@ -19,5 +19,10 @@ jobs:
       - name: Install deps and build (with cache)
         uses: bahmutov/npm-install@v1
 
-      - name: ${{ github.ref_name }}
-        run: echo ${{ github.ref_name }}
+      - name: Setup environment for publishing
+        run: sh scripts/setup-for-publishing.sh
+
+      - name: Publish ${{ github.ref_name }}
+        env:
+          VERSION: ${{ github.ref_name }}
+        run: npm run deploy
