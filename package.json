@@ -15,7 +15,7 @@
     "test": "jest",
     "lint": "eslint src/index.ts src/**/*.ts tests/*",
     "prepare": "husky",
-    "deploy": "sh publish.sh"
+    "deploy": "sh scripts/publish.sh"
   },
   "peerDependencies": {},
   "prettier": {
